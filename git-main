@@ -1,0 +1,16 @@
+#!/bin/bash
+# Show the name of the main/master branch
+set -e
+
+if [ "$(echo $(git branch | cat) | grep -w 'main')" ]
+then
+    main="main"
+elif [ "$(echo $(git branch | cat) | grep -w 'master')" ]
+then
+    main="master"
+else
+    echo "no master/main branch" >&2
+    exit 1
+fi
+
+echo $main

@@ -1,0 +1,8 @@
+#!/bin/bash
+# Switch and pull main/master
+set -e
+
+main=$(git main)
+
+git switch $main
+git pull

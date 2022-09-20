@@ -1,0 +1,5 @@
+#!/bin/bash
+# alias of git switch-sync
+set -e
+
+git switch-sync "$@"

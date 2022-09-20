@@ -1,0 +1,8 @@
+#!/bin/bash
+# add all files, commit with the specified message and push
+set -e
+
+message="${@:1}"
+
+git ac "$message"
+git push

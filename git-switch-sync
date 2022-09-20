@@ -1,0 +1,18 @@
+#!/bin/bash
+# Switch and rebase on top of upstream
+set -e
+
+branch="${1}"
+
+if [ -z "$(git branch | cat | grep -w $branch)" ]
+then
+    git fetch upstream
+    echo "${branch} does not exist locally, checking out..."
+    git checkout --track upstream/$branch
+    git branch --set-upstream-to origin
+fi
+
+git switch $branch
+git pull origin
+git fetch upstream
+git rebase upstream/$branch

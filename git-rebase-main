@@ -1,0 +1,12 @@
+#!/bin/bash
+# Rebase on top of the main/master branch
+set -e
+
+branch="$(git branch --show-current)"
+main=$(git main)
+
+echo "rebasing on top of $main"
+git switch $main
+git pull
+git switch -
+git rebase $main

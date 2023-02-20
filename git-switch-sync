@@ -4,15 +4,20 @@ set -e
 
 branch="${1}"
 
+if [ -z "${branch}" ]
+then
+    branch="$(git branch --show-current)"
+fi
+
 if [ -z "$(git branch | cat | grep -w $branch)" ]
 then
     git fetch upstream
     echo "${branch} does not exist locally, checking out..."
     git checkout --track upstream/$branch
     git branch --set-upstream-to origin
+else
+    git switch $branch
+    git pull origin
+    git fetch upstream
+    git rebase upstream/$branch
 fi
-
-git switch $branch
-git pull origin
-git fetch upstream
-git rebase upstream/$branch

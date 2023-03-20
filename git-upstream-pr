@@ -1,0 +1,20 @@
+#!/bin/bash
+# open a PR to contribute upstream (assumes the current repo is a fork)
+set -e
+
+template_file=".git/upstream_pr_template"
+
+if [ ! -f "$template_file" ]
+then
+    echo -e "required template file '.git/upstream_pr_template' missing\n"
+    echo "Example (<BRANCH> will be replaced with the current branch on execution):"
+    echo "https://github.com/upstream-owner/repo/compare/<BRANCH>...fork-owner:repo:<BRANCH>?expand=true"
+
+    exit 1
+fi
+
+branch="$(git branch --show-current)"
+# a bit of a crap hack to get around parsing remote URLs etc, 
+url=$(cat $template_file | sed "s/<BRANCH>/${branch}/g")
+
+open $url

@@ -1,0 +1,5 @@
+#!/bin/bash
+# alias of git upstream-pr 
+set -e
+
+git upstream-pr "$@"

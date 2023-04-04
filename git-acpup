@@ -1,0 +1,8 @@
+#!/bin/bash
+# alias of git acp & git up
+set -e
+
+message="${@:1}"
+
+git acp "$message"
+git up

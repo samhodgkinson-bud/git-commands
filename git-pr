@@ -1,0 +1,8 @@
+#!/bin/bash
+# Open github PR preview
+set -e
+
+branch="$(git branch --show-current)"
+origin="$(git remote get-url origin | sed 's/ssh:\/\/git@/https:\/\//g')"
+
+open "${origin}/compare/${branch}?expand=1"

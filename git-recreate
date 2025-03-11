@@ -1,0 +1,8 @@
+#!/bin/bash
+# Pull latest main/master & create a new branch
+set -e
+
+branch="${1}"
+main=$(git main)
+
+git switch $main && git pull && git branch -D $branch && git switch -C $branch

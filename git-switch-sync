@@ -17,6 +17,7 @@ then
     git branch --set-upstream-to origin
 else
     git switch $branch
+    git branch --set-upstream-to origin/$branch
     git pull origin $branch
     git fetch upstream
     git rebase upstream/$branch
